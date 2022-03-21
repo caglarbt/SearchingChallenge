@@ -1,0 +1,23 @@
+// Using the JavaScript language, have the function SearchingChallenge(str) take the str parameter being passed and return the first word with the greatest number of repeated letters. For example: "Today, is the greatest day ever!" should return greatest because it has 2 e's (and 2 t's) and it comes before ever which also has 2 e's. If there are no words with repeating letters return -1. Words will be separated by spaces. 
+
+// Input = "Hello apple pie"			Output = Hello
+// Input = "No words"							Output = -1
+
+function LetterCount( str ) {
+	var words = str.split( ' ' );
+	var longest = 0;
+	var longest_word;
+	for ( var i = 0; i < words.length; i++ ) {
+		var word = words[i];
+		for ( var j = 0; j < word.length; j++ ) {
+			var pattern = new RegExp( word[j], 'gi' );
+			var length = word.match( pattern ).length;
+			if ( length > 1 && length > longest ) {
+				longest = word.match( pattern ).length;
+				longest_word = word;
+			}
+		}
+	}
+	
+	return longest_word ? longest_word : -1;
+}
